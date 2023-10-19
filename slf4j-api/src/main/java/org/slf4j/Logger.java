@@ -1,7 +1,7 @@
 /**
  * Copyright (c) 2004-2011 QOS.ch
  * All rights reserved.
- *
+ * <p>
  * Permission is hereby granted, free  of charge, to any person obtaining
  * a  copy  of this  software  and  associated  documentation files  (the
  * "Software"), to  deal in  the Software without  restriction, including
@@ -9,10 +9,10 @@
  * distribute,  sublicense, and/or sell  copies of  the Software,  and to
  * permit persons to whom the Software  is furnished to do so, subject to
  * the following conditions:
- *
+ * <p>
  * The  above  copyright  notice  and  this permission  notice  shall  be
  * included in all copies or substantial portions of the Software.
- *
+ * <p>
  * THE  SOFTWARE IS  PROVIDED  "AS  IS", WITHOUT  WARRANTY  OF ANY  KIND,
  * EXPRESS OR  IMPLIED, INCLUDING  BUT NOT LIMITED  TO THE  WARRANTIES OF
  * MERCHANTABILITY,    FITNESS    FOR    A   PARTICULAR    PURPOSE    AND
@@ -20,7 +20,6 @@
  * LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION
  * OF CONTRACT, TORT OR OTHERWISE,  ARISING FROM, OUT OF OR IN CONNECTION
  * WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
- *
  */
 
 package org.slf4j;
@@ -51,7 +50,7 @@ package org.slf4j;
  *   }
  * }
  * </pre>
- *
+ * <p>
  * Be sure to read the FAQ entry relating to <a href="../../../faq.html#logging_performance">parameterized
  * logging</a>. Note that logging statements can be parameterized in
  * <a href="../../../faq.html#paramException">presence of an exception/throwable</a>.
@@ -72,7 +71,8 @@ public interface Logger {
 
     /**
      * Return the name of this <code>Logger</code> instance.
-     * @return name of this logger instance 
+     *
+     * @return name of this logger instance
      */
     public String getName();
 
@@ -80,7 +80,7 @@ public interface Logger {
      * Is the logger instance enabled for the TRACE level?
      *
      * @return True if this Logger is enabled for the TRACE level,
-     *         false otherwise.
+     * false otherwise.
      * @since 1.4
      */
     public boolean isTraceEnabled();
@@ -152,8 +152,7 @@ public interface Logger {
      *
      * @param marker The marker data to take into consideration
      * @return True if this Logger is enabled for the TRACE level,
-     *         false otherwise.
-     *         
+     * false otherwise.
      * @since 1.4
      */
     public boolean isTraceEnabled(Marker marker);
@@ -218,7 +217,7 @@ public interface Logger {
      * Is the logger instance enabled for the DEBUG level?
      *
      * @return True if this Logger is enabled for the DEBUG level,
-     *         false otherwise.
+     * false otherwise.
      */
     public boolean isDebugEnabled();
 
@@ -285,7 +284,7 @@ public interface Logger {
      *
      * @param marker The marker data to take into consideration
      * @return True if this Logger is enabled for the DEBUG level,
-     *         false otherwise. 
+     * false otherwise.
      */
     public boolean isDebugEnabled(Marker marker);
 
@@ -344,7 +343,7 @@ public interface Logger {
      * Is the logger instance enabled for the INFO level?
      *
      * @return True if this Logger is enabled for the INFO level,
-     *         false otherwise.
+     * false otherwise.
      */
     public boolean isInfoEnabled();
 
@@ -410,7 +409,7 @@ public interface Logger {
      * data is also taken into consideration.
      *
      * @param marker The marker data to take into consideration
-     * @return true if this logger is warn enabled, false otherwise 
+     * @return true if this logger is warn enabled, false otherwise
      */
     public boolean isInfoEnabled(Marker marker);
 
@@ -469,7 +468,7 @@ public interface Logger {
      * Is the logger instance enabled for the WARN level?
      *
      * @return True if this Logger is enabled for the WARN level,
-     *         false otherwise.
+     * false otherwise.
      */
     public boolean isWarnEnabled();
 
@@ -536,7 +535,7 @@ public interface Logger {
      *
      * @param marker The marker data to take into consideration
      * @return True if this Logger is enabled for the WARN level,
-     *         false otherwise.
+     * false otherwise.
      */
     public boolean isWarnEnabled(Marker marker);
 
@@ -595,7 +594,7 @@ public interface Logger {
      * Is the logger instance enabled for the ERROR level?
      *
      * @return True if this Logger is enabled for the ERROR level,
-     *         false otherwise.
+     * false otherwise.
      */
     public boolean isErrorEnabled();
 
@@ -662,7 +661,7 @@ public interface Logger {
      *
      * @param marker The marker data to take into consideration
      * @return True if this Logger is enabled for the ERROR level,
-     *         false otherwise.
+     * false otherwise.
      */
     public boolean isErrorEnabled(Marker marker);
 
@@ -717,5 +716,146 @@ public interface Logger {
      * @param t      the exception (throwable) to log
      */
     public void error(Marker marker, String msg, Throwable t);
+
+    /**
+     * Is the logger instance enabled for the BLOG level?
+     *
+     * @return True if this Logger is enabled for the BLOG level,
+     * false otherwise.
+     */
+    default public boolean isBlogEnabled() {
+        return false;
+    }
+
+    /**
+     * Log a message at the BLOG level.
+     *
+     * @param msg the message string to be logged
+     */
+    default public void blog(String msg) {
+    }
+
+    /**
+     * Log a message at the BLOG level according to the specified format
+     * and argument.
+     * <p/>
+     * <p>This form avoids superfluous object creation when the logger
+     * is disabled for the BLOG level. </p>
+     *
+     * @param format the format string
+     * @param arg    the argument
+     */
+    default public void blog(String format, Object arg) {
+    }
+
+    /**
+     * Log a message at the BLOG level according to the specified format
+     * and arguments.
+     * <p/>
+     * <p>This form avoids superfluous object creation when the logger
+     * is disabled for the BLOG level. </p>
+     *
+     * @param format the format string
+     * @param arg1   the first argument
+     * @param arg2   the second argument
+     */
+    default public void blog(String format, Object arg1, Object arg2) {
+    }
+
+    /**
+     * Log a message at the BLOG level according to the specified format
+     * and arguments.
+     * <p/>
+     * <p>This form avoids superfluous string concatenation when the logger
+     * is disabled for the BLOG level. However, this variant incurs the hidden
+     * (and relatively small) cost of creating an <code>Object[]</code> before invoking the method,
+     * even if this logger is disabled for BLOG. The variants taking
+     * {@link #blog(String, Object) one} and {@link #blog(String, Object, Object) two}
+     * arguments exist solely in order to avoid this hidden cost.</p>
+     *
+     * @param format    the format string
+     * @param arguments a list of 3 or more arguments
+     */
+    default public void blog(String format, Object... arguments) {
+    }
+
+    /**
+     * Log an exception (throwable) at the BLOG level with an
+     * accompanying message.
+     *
+     * @param msg the message accompanying the exception
+     * @param t   the exception (throwable) to log
+     */
+    default public void blog(String msg, Throwable t) {
+    }
+
+    /**
+     * Similar to {@link #isBlogEnabled()} method except that the
+     * marker data is also taken into consideration.
+     *
+     * @param marker The marker data to take into consideration
+     * @return True if this Logger is enabled for the BLOG level,
+     * false otherwise.
+     */
+    default public boolean isBlogEnabled(Marker marker) {
+        return false;
+    }
+
+    /**
+     * Log a message with the specific Marker at the BLOG level.
+     *
+     * @param marker The marker specific to this log statement
+     * @param msg    the message string to be logged
+     */
+    default public void blog(Marker marker, String msg) {
+    }
+
+    /**
+     * This method is similar to {@link #blog(String, Object)} method except that the
+     * marker data is also taken into consideration.
+     *
+     * @param marker the marker data specific to this log statement
+     * @param format the format string
+     * @param arg    the argument
+     */
+    default public void blog(Marker marker, String format, Object arg) {
+    }
+
+    /**
+     * This method is similar to {@link #blog(String, Object, Object)}
+     * method except that the marker data is also taken into
+     * consideration.
+     *
+     * @param marker the marker data specific to this log statement
+     * @param format the format string
+     * @param arg1   the first argument
+     * @param arg2   the second argument
+     */
+    default public void blog(Marker marker, String format, Object arg1, Object arg2) {
+    }
+
+    /**
+     * This method is similar to {@link #blog(String, Object...)}
+     * method except that the marker data is also taken into
+     * consideration.
+     *
+     * @param marker    the marker data specific to this log statement
+     * @param format    the format string
+     * @param arguments a list of 3 or more arguments
+     */
+    default public void blog(Marker marker, String format, Object... arguments) {
+    }
+
+    /**
+     * This method is similar to {@link #blog(String, Throwable)}
+     * method except that the marker data is also taken into
+     * consideration.
+     *
+     * @param marker the marker data specific to this log statement
+     * @param msg    the message accompanying the exception
+     * @param t      the exception (throwable) to log
+     */
+    default public void blog(Marker marker, String msg, Throwable t) {
+    }
 
 }

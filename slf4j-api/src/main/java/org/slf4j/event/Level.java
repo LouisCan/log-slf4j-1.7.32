@@ -2,6 +2,7 @@ package org.slf4j.event;
 
 import static org.slf4j.event.EventConstants.DEBUG_INT;
 import static org.slf4j.event.EventConstants.ERROR_INT;
+import static org.slf4j.event.EventConstants.BLOG_INT;
 import static org.slf4j.event.EventConstants.INFO_INT;
 import static org.slf4j.event.EventConstants.TRACE_INT;
 import static org.slf4j.event.EventConstants.WARN_INT;
@@ -13,7 +14,7 @@ import static org.slf4j.event.EventConstants.WARN_INT;
  */
 public enum Level {
 
-    ERROR(ERROR_INT, "ERROR"), WARN(WARN_INT, "WARN"), INFO(INFO_INT, "INFO"), DEBUG(DEBUG_INT, "DEBUG"), TRACE(TRACE_INT, "TRACE");
+    BINLOG(BLOG_INT, "BLOG"), ERROR(ERROR_INT, "ERROR"), WARN(WARN_INT, "WARN"), INFO(INFO_INT, "INFO"), DEBUG(DEBUG_INT, "DEBUG"), TRACE(TRACE_INT, "TRACE");
 
     private int levelInt;
     private String levelStr;

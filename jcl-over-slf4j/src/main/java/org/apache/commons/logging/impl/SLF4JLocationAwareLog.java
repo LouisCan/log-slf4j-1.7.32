@@ -235,6 +235,33 @@ public class SLF4JLocationAwareLog implements Log, Serializable {
             logger.log(null, FQCN, LocationAwareLogger.ERROR_INT, String.valueOf(message), null, t);
         }
     }
+    /**
+     * Converts the input parameter to String and then delegates to the wrapped
+     * <code>org.slf4j.Logger</code> instance.
+     *
+     * @param message
+     *          the message to log. Converted to {@link String}
+     */
+    public void blog(Object message) {
+        if (isErrorEnabled()) {
+            logger.log(null, FQCN, LocationAwareLogger.BLOG_INT, String.valueOf(message), null, null);
+        }
+    }
+
+    /**
+     * Converts the first input parameter to String and then delegates to the
+     * wrapped <code>org.slf4j.Logger</code> instance.
+     *
+     * @param message
+     *          the message to log. Converted to {@link String}
+     * @param t
+     *          the exception to log
+     */
+    public void blog(Object message, Throwable t) {
+        if (isErrorEnabled()) {
+            logger.log(null, FQCN, LocationAwareLogger.BLOG_INT, String.valueOf(message), null, t);
+        }
+    }
 
     /**
      * Converts the input parameter to String and then delegates to the error

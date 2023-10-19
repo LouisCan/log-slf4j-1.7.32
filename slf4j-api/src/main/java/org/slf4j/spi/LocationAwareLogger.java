@@ -46,6 +46,7 @@ public interface LocationAwareLogger extends Logger {
     final public int INFO_INT = 20;
     final public int WARN_INT = 30;
     final public int ERROR_INT = 40;
+    final public int BLOG_INT = 50;
 
     /**
      * Printing method with support for location information. 
